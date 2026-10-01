@@ -1,3 +1,4 @@
+import time
 def todo_app():
     tasks = []
 
@@ -51,6 +52,7 @@ def todo_app():
 
         elif choice == '4':
             print('\nClosing Application...')
+            time.sleep(1)
             print('\nGoodbye!')
             break
 
