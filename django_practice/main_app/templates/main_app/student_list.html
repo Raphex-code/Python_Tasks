@@ -4,8 +4,23 @@
     <meta charset="UTF-8" />
     <title>Student List</title>
   </head>
+  <style>
+    body{
+      background-color: #70eec4e8;
+    }
+    a{
+      text-decoration: none;
+      color: #fefcfc;
+    }
+    button{
+      background-color: gray;
+      border: none;
+      border-radius: 5px;
+      padding: 5px;
+    }
+  </style>
   <body>
-    <a href="/">Back to Home</a>
+    <button><a href="/">Back to Home</a></button>
     <h1>My Students</h1>
 
     {% for student in students %}

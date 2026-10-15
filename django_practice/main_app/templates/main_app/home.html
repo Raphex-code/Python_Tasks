@@ -4,9 +4,25 @@
     <meta charset="UTF-8" />
     <title>My Django App</title>
   </head>
+  <style>
+    body{
+      background-color: #4bdcdca0;;
+    }
+    a{
+      text-decoration: none;
+      color: #ffffffe9;
+    }
+    button{
+      background-color: gray;
+      border: none;
+      border-radius: 5px;
+      padding: 5px;
+    }
+  </style>
   <body>
-    <a href="students/">Students List</a>
-    <a href="about/">About Us</a>
+    <button><a href="students/" style="margin-right: 15px;">Students 🎓</a></button>
+    <button><a href="about/">About Us</a></button>
+    <button><a href="admin/">Admin</a></button>
     <h1>Welcome to My Django App!</h1>
     <p>Hello, {{student_name}}!</p>
     <p>This is the home page.</p>
