@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Student List</title>
+  </head>
+  <body>
+    <a href="/">Back to Home</a>
+    <h1>My Students</h1>
+
+    {% for student in students %}
+    <div>
+      <h2>{{ student.name }}</h2>
+      <p>Student ID: {{ student.student_id }}</p>
+      <p>Email: {{ student.email }}</p>
+      <p>Age: {{ student.age }}</p>
+    </div>
+    <hr />
+    {% empty %}
+    <p>No students have been added yet.</p>
+    {% endfor %}
+  </body>
+</html>

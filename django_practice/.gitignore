@@ -1,0 +1,27 @@
+Python 
+
+pycache/
+*.py[cod]
+
+
+Virtual Environment
+
+venv/
+.venv
+
+Environment variables and secrets
+
+.env
+
+Django 
+
+staticfiles/
+media/
+
+Local database
+
+db.sqlite3
+
+IDE
+
+.vscode/
