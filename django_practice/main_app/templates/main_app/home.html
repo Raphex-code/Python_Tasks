@@ -1,33 +1,278 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>My Django App</title>
-  </head>
-  <style>
-    body{
-      background-color: #4bdcdca0;;
-    }
-    a{
-      text-decoration: none;
-      color: #ffffffe9;
-    }
-    button{
-      background-color: gray;
-      border: none;
-      border-radius: 5px;
-      padding: 5px;
-    }
-  </style>
-  <body>
-    <button><a href="students/" style="margin-right: 15px;">Students 🎓</a></button>
-    <button><a href="about/">About Us</a></button>
-    <button><a href="admin/">Admin</a></button>
-    <h1>Welcome to My Django App!</h1>
-    <p>Hello, {{student_name}}!</p>
-    <p>This is the home page.</p>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <h2>My first website</h2>
-    <p>This is my first website built with Django!</p>
+    <title>Student Portal | Dashboard</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        scroll-behavior: smooth;
+        background-colo: #f4f5fb;
+        color: #24263b;
+      }
+      .sidebar {
+        width: 250px;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: 30px 20px;
+        background: #171a35;
+        color: #ffff;
+      }
+      .brand {
+        font-size: 23px;
+        font-weight: bold;
+        margin-bottom: 25px;
+      }
+      .brand span {
+        color: #a99bff;
+      }
+      .menu-label {
+        color: #969ab6;
+        font-size: 11px;
+        margin-bottom: 15px;
+      }
+      .navigation a {
+        display: block;
+        padding: 14px;
+        margin-bottom: 8px;
+        color: #c7c9dc;
+        text-transform: none;
+        border-radius: 8px;
+        transition: 0.3s;
+        text-decoration: none;
+      }
+      .navigation a:hover,
+      .navigation a.active {
+        color: #ffff;
+        background: #5140bd94;
+      }
+      ion-icon {
+        margin: -2px;
+        margin-right: 2px;
+      }
+      .main-content {
+        margin-left: 250px;
+        padding: 35px;
+      }
+      .topbar {
+        margin-bottom: 30px;
+      }
+      .topbar p {
+        color: #6957d9;
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+      }
+      .topbar h1 {
+        font-size: 30px;
+      }
+      .welcome-banner {
+        padding: 35px;
+        border-radius: 15px;
+        color: #ffffff;
+        background: linear-gradient(120deg, #5140bd, #8674f0);
+        margin-bottom: 30px;
+      }
+      .welcome-banner h2 {
+        font-size: 27px;
+        margin-bottom: 12px;
+      }
+      .welcome-banner p {
+        color: #e6e1ff;
+        line-height: 1.7;
+        margin-bottom: 22px;
+      }
+      .button {
+        display: inline-block;
+        padding: 12px 18px;
+        background: #fff;
+        color: #5140bd;
+        text-decoration: 8px;
+        font-weight: bold;
+      }
+      .section-title {
+        margin-bottom: 18px;
+      }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .stat-card {
+        padding: 25px;
+        background: #fff;
+        border: 1.5px solid #e8e9f2b8;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px #171a3508;
+        transition: transform 0.5s;
+      }
+      .stat-card:hover{
+        transform: scale(1.05);
+      }
+      .stat-card p {
+        font-weight: bold;
+        font-size: 15px;
+      }
+      /* .stat-card span {
+        font-size: 15px;
+      } */
+      .stat-card h3 {
+        font-size: 27px;
+        margin-top: 5px ;
+        margin-bottom: 10px;
+      }
+      .content-card {
+        background: #fff;
+        padding: 25px;
+        margin-top: 25px;
+        border-radius: 12px;
+        border: 1px solid #e8e9f2;
+      }
+      .content-card h2 {
+        margin-bottom: 18px;
+      }
+      .action-link {
+        display: flex;
+        justify-content: space-between;
+        padding: 16px 0;
+        border-bottom: 1px solid #eeeef5;
+        color: #5140bd;
+        text-decoration: none;
+      }
+      .action-link:last-child {
+        border-bottom: none;
+      }
+      .footer {
+        margin-top: 30px;
+        color: #85899d;
+        font-size: 12px;
+      }
+      @media (max-width: 760px) {
+        .sidebar {
+          width: 100%;
+          height: auto;
+          position: relative;
+          padding: 20px;
+        }
+        .brand {
+          margin-bottom: 20px;
+        }
+        .navigation {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 5px;
+        }
+        .navigation a {
+          padding: 10px;
+          margin-bottom: 0;
+        }
+        .main-content {
+          margin-left: 0;
+          padding: 20px;
+        }
+        .welcome-banner {
+          padding: 25px;
+        }
+        .welcome-banner h2 {
+          font-size: 22px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="brand">Student<span> Portal</span></div>
+
+      <p class="menu-label">MAIN MENU</p>
+
+      <nav class="navigation">
+        <a href="{% url 'home' %}" class="active"
+          ><ion-icon name="home"></ion-icon> Dashboard</a
+        >
+        <a href="{% url 'students' %}"
+          ><ion-icon name="person"></ion-icon> Students</a
+        >
+        <a href="{% url 'about' %}"
+          ><ion-icon name="alert-circle"></ion-icon> About Us</a
+        >
+        <a href="/admin/"
+          ><ion-icon name="settings"></ion-icon> Admin</a
+        >
+      </nav>
+    </aside>
+    <main class="main-content">
+      <header class="topbar">
+        <p>STUDENT MANAGEMENT</p>
+        <h1>DASHBOARD</h1>
+      </header>
+
+      <section class="welcome-banner">
+        <h2>Welcome to Your Student Portal</h2>
+        <p>
+          Manage student records and keep your information organized in one
+          convenient place
+        </p>
+      </section>
+      <h2 class="section-title">Overview</h2>
+
+      <section class="stats-grid">
+        <div class="stat-card">
+          <p>TOTAL STUDENTS</p>
+          <h3>{{ total_students|default:"0" }}</h3>
+          <span>Registered student records</span>
+        </div>
+
+        <div class="stat-card">
+          <p>RECORD MANAGEMENT</p>
+          <h3>Organized</h3>
+          <span>Your portal is ready to use</span>
+        </div>
+      </section>
+
+      <section class="content-card">
+        <h2>Quick Action</h2>
+
+        <a href="{% url 'students' %}" class="action-link">
+          <span>View student records</span>
+          <span
+            ><ion-icon name="chevron-forward-circle-outline"></ion-icon
+          ></span>
+        </a>
+
+        <a href="/admin/" class="action-link">
+          <span>Manage records in Admin</span>
+          <span
+            ><ion-icon name="chevron-forward-circle-outline"></ion-icon
+          ></span>
+        </a>
+
+        <a href="{% url 'about' %}" class="action-link">
+          <span>Learn about this portal</span>
+          <span
+            ><ion-icon name="chevron-forward-circle-outline"></ion-icon
+          ></span>
+        </a>
+      </section>
+
+      <footer class="footer">Student Portal . Built by Raphael</footer>
+    </main>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
   </body>
 </html>

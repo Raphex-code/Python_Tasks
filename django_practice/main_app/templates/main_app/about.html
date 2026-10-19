@@ -1,37 +1,317 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>About Us</title>
-</head>
-  <style>
-    body{
-      background-color: #70eec4e8;
-    }
-    a{
-      text-decoration: none;
-      color: #fff9f9;
-    }
-    button{
-      background-color: gray;
-      border: none;
-      border-radius: 5px;
-      padding: 5px;
-    }
-  </style>
-<body>
-  <button><a href="/">Back to Home</a></button>
-  <h1>About My Django Website</h1>
-  <p>Welcome to my website!</p>
-  <p>This website was built using Python and Django.</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us | Student Portal</title>
 
-  <h2>What I am learning</h2>
-  <ul>
-    <li>Django views</li>
-    <li>URL routing</li>
-    <li>HTML templates</li>
-    <li>Database management</li>
-  </ul>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-</body>
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #f5f7fb;
+        color: #263247;
+        line-height: 1.6;
+      }
+
+      .navbar {
+        background: #ffffff;
+        padding: 20px 7%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #e8ecf3;
+      }
+
+      .logo {
+        color: #4f46e5;
+        font-size: 22px;
+        font-weight: 800;
+      }
+
+      .logo ion-icon {
+        vertical-align: middle;
+      }
+
+      .navbar nav {
+        display: flex;
+        gap: 24px;
+      }
+
+      .navbar a {
+        text-decoration: none;
+        color: #667085;
+        font-weight: 600;
+        transition: color 0.5s;
+      }
+      .navbar a:hover,
+      .navbar a.active {
+        color: #4f46e5;
+      }
+      .container {
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 0 24px;
+      }
+      .hero {
+        background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        color: white;
+        padding: 55px 45px;
+        border-radius: 22px;
+        margin-bottom: 30px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero h1 {
+        font-size: 36px;
+        margin-bottom: 12px;
+      }
+      .hero p {
+        max-width: 650px;
+        color: #e8e7ff;
+        font-size: 16px;
+      }
+      .hero-icon {
+        position: absolute;
+        right: 45px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 115px;
+        color: #ffffff3f;
+      }
+      .section-title {
+        font-size: 24px;
+        margin-bottom: 18px;
+      }
+      .intro-card {
+        background: white;
+        padding: 28px;
+        border-radius: 16px;
+        box-shadow: 0 5px 25px rgba(30, 41, 59, 0.04);
+        margin-bottom: 28px;
+      }
+      .intro-card p {
+        color: #697586;
+        margin-bottom: 12px;
+      }
+      .intro-card p:last-child {
+        margin-bottom: 0;
+      }
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+      .feature-card {
+        background: white;
+        padding: 25px;
+        border-radius: 16px;
+        box-shadow: 0 5px 25px rgba(30, 41, 59, 0.04);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(30, 41, 59, 0.08);
+      }
+      .feature-icon {
+        width: 52px;
+        height: 52px;
+        background: #eef2ff;
+        color: #4f46e5;
+        border-radius: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 27px;
+        margin-bottom: 18px;
+      }
+      .feature-card h3 {
+        margin-bottom: 10px;
+        font-size: 18px;
+      }
+      .feature-card p {
+        color: #7b8497;
+        font-size: 14px;
+      }
+
+      .mission-card {
+        background: #ffffff;
+        border-left: 5px solid #4f46e5;
+        padding: 28px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        box-shadow: 0 5px 25px rgba(30, 41, 59, 0.04);
+      }
+      .mission-card h2 {
+        margin-bottom: 10px;
+      }
+      .mission-card p {
+        color: #697586;
+      }
+
+      footer {
+        text-align: center;
+        padding: 25px;
+        color: #8a93a5;
+        font-size: 13px;
+      }
+
+      @media (max-width: 750px) {
+        .feature-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          padding: 38px 28px;
+        }
+
+        .hero h1 {
+          font-size: 29px;
+        }
+
+        .hero-icon {
+          right: 15px;
+          font-size: 75px;
+        }
+
+        .navbar {
+          padding: 18px 5%;
+          align-items: flex-start;
+          gap: 15px;
+          flex-direction: column;
+        }
+
+        .navbar nav {
+          gap: 16px;
+          flex-wrap: wrap;
+        }
+
+        .container {
+          margin-top: 25px;
+          padding: 0 16px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="navbar">
+      <div class="logo">
+        <ion-icon name="school"></ion-icon>
+        Student Portal
+      </div>
+
+      <nav>
+        <a href="{% url 'home' %}">Dashboard</a>
+        <a href="{% url 'students' %}">Students</a>
+        <a href="{% url 'about' %}" class="active">About</a>
+        <a href="/admin/">Admin</a>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <h1>About Our Student Portal</h1>
+        <p>
+          A simple and organized platform designed to make student information
+          easier to access, view, and manage.
+        </p>
+
+        <ion-icon name="school-outline" class="hero-icon"></ion-icon>
+      </section>
+
+      <section class="intro-card">
+        <h2 class="section-title">Who We Are</h2>
+
+        <p>
+          Welcome to our Student Portal, a web-based application developed to
+          help organize and manage student records.
+        </p>
+
+        <p>
+          The portal provides a central place to view student information,
+          including names, identification numbers, email addresses, and ages.
+        </p>
+
+        <p>
+          This project demonstrates how web technologies and database management
+          can work together to make information easier to organize and retrieve.
+        </p>
+      </section>
+
+      <h2 class="section-title">What You Can Do</h2>
+
+      <section class="feature-grid">
+        <article class="feature-card">
+          <div class="feature-icon">
+            <ion-icon name="people-outline"></ion-icon>
+          </div>
+
+          <h3>Student Records</h3>
+          <p>
+            View registered students and access their basic information from one
+            organized directory.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">
+            <ion-icon name="layers-outline"></ion-icon>
+          </div>
+
+          <h3>Organized Information</h3>
+          <p>
+            Keep student details structured in a database for easier retrieval
+            and management.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">
+            <ion-icon name="desktop-outline"></ion-icon>
+          </div>
+
+          <h3>Simple Interface</h3>
+          <p>
+            Navigate the portal through a clean, responsive interface on desktop
+            and mobile devices.
+          </p>
+        </article>
+      </section>
+
+      <section class="mission-card">
+        <h2>
+          <ion-icon name="flag-outline"></ion-icon>
+          Our Mission
+        </h2>
+
+        <p>
+          Our goal is to demonstrate a practical, user-friendly approach to
+          managing student information while applying the fundamentals of web
+          development and database design.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      © 2026 Student Portal. All rights reserved. | Built by Raphael
+    </footer>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
 </html>

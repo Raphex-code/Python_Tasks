@@ -13,5 +13,5 @@ class Student(models.Model):
         db_table = 'students'
 
 
-def __str__(self):
-    return self.name
+    def __str__(self):
+         return self.name
