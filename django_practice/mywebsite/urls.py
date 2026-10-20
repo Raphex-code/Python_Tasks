@@ -32,7 +32,7 @@ urlpatterns = [
       'logout/',
       auth_views.LogoutView.as_view(),
       name="logout",
-    )
+    ),
 
     path('', views.home, name='home'),
     path('students/', views.students, name='students'),

@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>Login | Student Portal</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        justify-self: center;
+        align-items: center;
+        background: #f1f5f9;
+        padding: 20px;
+      }
+      .login-container {
+        width: 100%;
+        min-width: 420px;
+        background: #fff;
+        padding: 35px;
+        border-radius: 16px;
+        box-shadow: 0 10px 35px #00000014;
+      }
+      .logo {
+        font-size: 40px;
+        text-align: center;
+      }
+      /* .welcome {
+        text-align: center;
+      } */
+      .login {
+        width: 55px;
+        height: 55px;
+        background: #4f46e5;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 14px;
+        font-size: 25px;
+        margin-bottom: 22px;
+      }
+      h1 {
+        font-size: 26px;
+        color: #1e293b;
+        margin-bottom: 9px;
+        text-align: center;
+      }
+      .subtitle {
+        color: #64748b;
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 25px;
+      }
+      .form-group {
+        margin-bottom: 18px;
+      }
+      label {
+        display: block;
+        font-size: 14px;
+        font-weight: bold;
+        color: #334155;
+        margin-bottom: 8px;
+      }
+      input {
+        width: 100%;
+        padding: 13px;
+        border: 1px solid #cbd5e1;
+        border-radius: 9px;
+        font-size: 15px;
+      }
+      input:focus {
+        outline: 2px solid #c7d2fe;
+        border-color: #4f46e5;
+      }
+      .login-button {
+        width: 100%;
+        padding: 14px;
+        border: none;
+        border-radius: 9px;
+        background: #4f46e5;
+        color: #fff;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 5px;
+      }
+      .login-botton:hover {
+        background: #4338ca;
+      }
+      .error-message {
+        background: #fef2f2;
+        color: #b91c1c;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 14px;
+        margin-bottom: 18px;
+      }
+      .footer {
+        margin-top: 22px;
+        text-align: center;
+        color: #94a3b8;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="login-container">
+      <div class="logo"><ion-icon name="lock-closed"></ion-icon></div>
+
+      <h1 class="welcome">Welcome Back</h1>
+      <p class="subtitle">
+        Sign in with your account to access the Student Portal.
+      </p>
+
+      {% if form.errors %}
+        <div class="error-message">
+            Incorrect username or password. Please try again.
+        </div>
+      {% endif %}
+
+      <form method="POST">
+        {% csrf_token %}
+
+        <div class="form-group">
+          <label for="id_username">Username</label>
+          <input
+            type="text"
+            name="username"
+            id="id_username"
+            placeholder="Enter your username"
+            autocomplete="username"
+            requrired
+            autofocus
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="id_password">Password</label>
+          <input
+            type="password"
+            name="password"
+            id="id_password"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+            required
+          />
+        </div>
+
+        {% if next %}
+        <input type="hidden" name="next" value="{{ next }}" />
+        {% endif %}
+
+        <button type="submit" class="login-button">Sign In</button>
+      </form>
+
+      <p class="footer">
+        Student Portal . Authorized access only | Built by Raph
+      </p>
+    </div>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
