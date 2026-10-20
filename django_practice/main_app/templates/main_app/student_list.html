@@ -191,6 +191,7 @@
       .modal {
         display: none;
         position: fixed;
+        justify-content: center;
         inset: 0;
         z-index: 1000;
         background: #0f172a99;
@@ -207,6 +208,7 @@
         padding: 28px;
         border-radius: 16px;
         box-shadow: 0 20px 60px #00000033;
+        margin-top: 2.5%;
       }
       .modal-header {
         display: flex;
@@ -423,42 +425,44 @@
               Cancel
             </button>
 
-            <button type="submit" class="add-student-btn">
-              Save Student
-            </button>
+            <button type="submit" class="add-student-btn">Save Student</button>
           </div>
         </form>
       </div>
     </div>
 
     <script>
-      const modal = document.getElementById("studentModal");
-      const openButton = document.getElementById("openModal");
-      const closeButton = document.getElementById("closeModal");
-      const cancelButton = document.getElementById("cancelModal");      
-
-      function openStudentModal() {
-        modal.classList.add("open");
-      }
-
-      function closeStudentModal() {
-        modal.classList.remove("open");
-      }
-
-      openButton.addEventListener("click", openStudentModal)
-      closeButton.addEventListener("click", closeStudentModal);
-      cancelButton.addEventListener("click", cancelStudentModal);
-
-      modal.addEventListener("click" function (event) {
-        if (event.target === modal) {
-          closeStudentModal();
+      document.addEventListener("DOMContentLoaded", function() {
+        const modal = document.getElementById("studentModal");
+        const openButton = document.getElementById("openModal");
+        const closeButton = document.getElementById("closeModal");
+        const cancelButton = document.getElementById("cancelModal");
+        
+        if (!modal || !openButton) {
+          console.error("Modal or Add Student button was not found.");
+          return
         }
-      });
 
-      document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") {
-          closeStudentModal();
+        openButton.addEventListener("click", function () {
+          modal.classList.add("open");
+        });
+        if (closeButton) {
+          closeButton.addEventListener("click", function () {
+            modal.classList.remove("open");
+          });
         }
+
+        modal.addEventListener("click", function (event) {
+          if (event.target === modal) {
+            modal.classList.remove("open");
+          }
+        });
+
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape") {
+            modal.classList.remove("open");
+          }
+        });
       });
     </script>
     <script
