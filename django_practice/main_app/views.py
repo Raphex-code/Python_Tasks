@@ -13,25 +13,21 @@ def home(request):
 
 @login_required
 def students(request):
-    if request.method == "POST"
+    if request.method == "POST":
         form = StudentForm(request.POST)
 
         if form.is_valid():
             form.save()
             return redirect("students")
-        else:
-            form = StudentForm()
+    else:
+        form = StudentForm()
 
-        students = Student.objects.all()
+    students = Student.objects.all()
 
-        return render(request, "main_app/student_list.html", {
-            "students": students,
-            "form": form,
-            "show_modal": request.method == "POST"
-        })
-
-    return render(request, 'main_app/student_list.html', {
-        'students': students
+    return render(request, "main_app/student_list.html", {
+        "students": students,
+        "form": form,
+        "show_modal": request.method == "POST",
     })
 
 @login_required
