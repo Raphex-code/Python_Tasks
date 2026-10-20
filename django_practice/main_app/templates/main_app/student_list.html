@@ -32,6 +32,9 @@
         font-size: 22px;
         font-weight: 800;
       }
+      .logo ion-icon {
+        vertical-align: middle;
+      }
 
       .navbar nav {
         display: flex;
@@ -133,6 +136,19 @@
         color: #4f46e5;
         font-weight: 700;
       }
+      .logout-btn {
+        background: #ef4444;
+        color: #fff;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .logout-btn:hover {
+        background: #dc2626;
+      }
 
       .age-badge {
         display: inline-block;
@@ -207,7 +223,12 @@
         <a href="{% url 'home' %}">Dashboard</a>
         <a href="{% url 'students' %}" class="active">Students</a>
         <a href="{% url 'about' %}">About</a>
-        <a href="/admin/">Admin</a>
+        <form method="POST" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button type="submit" class="logout-btn">
+            Logout
+          </button>
+        </form>
       </nav>
     </header>
 

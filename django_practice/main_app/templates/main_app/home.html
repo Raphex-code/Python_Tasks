@@ -141,6 +141,20 @@
       .content-card h2 {
         margin-bottom: 18px;
       }
+      .logout-btn {
+        background: #ef4444;
+        color: #fff;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        
+      }
+      .logout-btn:hover {
+        background: #dc2626;
+      }
       .action-link {
         display: flex;
         justify-content: space-between;
@@ -205,9 +219,12 @@
         <a href="{% url 'about' %}"
           ><ion-icon name="alert-circle"></ion-icon> About Us</a
         >
-        <a href="/admin/"
-          ><ion-icon name="settings"></ion-icon> Admin</a
-        >
+        <form method="POST" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button type="submit" class="logout-btn">
+            Logout
+          </button>
+        </form>
       </nav>
     </aside>
     <main class="main-content">

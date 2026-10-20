@@ -92,7 +92,7 @@
         background: white;
         padding: 28px;
         border-radius: 16px;
-        box-shadow: 0 5px 25px rgba(30, 41, 59, 0.04);
+        box-shadow: 0 5px 25px #1e293b0a;
         margin-bottom: 28px;
       }
       .intro-card p {
@@ -112,14 +112,14 @@
         background: white;
         padding: 25px;
         border-radius: 16px;
-        box-shadow: 0 5px 25px rgba(30, 41, 59, 0.04);
+        box-shadow: 0 5px 25px #1e293b0a;
         transition:
           transform 0.2s,
           box-shadow 0.2s;
       }
       .feature-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(30, 41, 59, 0.08);
+        box-shadow: 0 10px 30px #1e293b14;
       }
       .feature-icon {
         width: 52px;
@@ -141,6 +141,19 @@
         color: #7b8497;
         font-size: 14px;
       }
+      .logout-btn {
+        background: #ef4444;
+        color: #fff;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .logout-btn:hover {
+        background: #dc2626;
+      }
 
       .mission-card {
         background: #ffffff;
@@ -148,7 +161,7 @@
         padding: 28px;
         border-radius: 12px;
         margin-bottom: 30px;
-        box-shadow: 0 5px 25px rgba(30, 41, 59, 0.04);
+        box-shadow: 0 5px 25px #1e293b0a;
       }
       .mission-card h2 {
         margin-bottom: 10px;
@@ -213,7 +226,12 @@
         <a href="{% url 'home' %}">Dashboard</a>
         <a href="{% url 'students' %}">Students</a>
         <a href="{% url 'about' %}" class="active">About</a>
-        <a href="/admin/">Admin</a>
+        <form method="POST" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button type="submit" class="logout-btn">
+            Logout
+          </button>
+        </form>
       </nav>
     </header>
 
