@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.utils import timezone
 from .models import Task
 from .forms import TaskForm
 
@@ -44,5 +45,10 @@ def delete_task_view(request, pk):
 def toggle_complete_view(request, pk):
     task = get_object_or_404(Task, pk=pk)
     task.completed = not task.completed
+    if task.completed:
+        task.completed_at = timezone.now()
+    else:
+        task.completed_at = None
+        
     task.save()
     return redirect('task_list')
